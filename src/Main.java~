@@ -1,0 +1,65 @@
+import java.sql.SQLOutput;
+import java.util.Scanner;
+/*C A L C U L A T O R*/
+
+public class Main {
+
+    private int num1;
+    private int num2;
+    private String operator;
+
+    //constructor
+    private Main(int num1, int num2, String operator) {
+        this.num1 = num1;
+        this.num2 = num2;
+        this.operator = operator;
+    }
+
+    public static void main(String[] args) {
+        Main Main = new Main (getNumber("first"), getNumber("second"), getOperator() );
+        Main.calculate();
+    }
+
+    public static int getNumber(String order) {
+        Scanner input = new Scanner(System.in);
+        System.out.printf("Enter the %s number: ", order);
+        return input.nextInt();
+    }
+
+    public static String getOperator() {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the operator (+, -, *, /, %): ");
+        return input.next().trim();
+    }
+
+    // Método para realizar el cálculo y mostrar el resultado
+    public void calculate() {
+        switch (operator) {
+            case "+":
+                System.out.println("Result: " + (num1 + num2));
+                break;
+            case "-":
+                System.out.println("Result: " + (num1 - num2));
+                break;
+            case "*":
+                System.out.println("Result: " + (num1 * num2));
+                break;
+            case "/":
+                if (num2 == 0) {
+                    System.out.println("Cannot divide by zero.");
+                } else {
+                    System.out.println("Result: " + ((double) num1 / num2));
+                }
+                break;
+            case "%":
+                if (num2 == 0) {
+                    System.out.println("Cannot compute modulo by zero.");
+                } else {
+                    System.out.println("Result: " + (num1 % num2));
+                }
+                break;
+            default:
+                System.out.println("Invalid operator. Please use one of the following: +, -, *, /, %.");
+        }
+    }
+}
